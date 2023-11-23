@@ -24,7 +24,7 @@ const app = express()
 
 app.use(cors(
   {credentials:true,
-    origin:['http://localhost:5173' , 'https://blogapp-pvsw.onrender.com']
+    origin:['http://localhost:4173' , 'http://localhost:5173' , 'https://blogapp-pvsw.onrender.com']
   }));
 
 app.use(express.json())
