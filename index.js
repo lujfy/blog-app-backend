@@ -32,7 +32,6 @@ app.use(express.json())
 app.use(cookieParser())
 app.use('/uploads', express.static(__dirname + '/uploads'));
 
-mongoose.connect(process.env.MONGO_URI) ;
 
 app.post('/register', async (req,res) => {
     const {username,password} = req.body;
@@ -147,6 +146,15 @@ app.put('/post', uploadMiddleware.single('file'), async (req, res) => {
 });
 
 
+const PORT = process.env.PORT || 5000
 
-
-app.listen(4000)
+mongoose
+.connect(process.env.MONGO_URI)
+.then (
+    () => {
+        app.listen(PORT , () => {
+            console.log(`server running on PORT ${PORT}`)
+        })
+    }
+)
+.catch((error) => console.log(error))
